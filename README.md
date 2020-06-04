@@ -22,7 +22,7 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 | `loki_db_dir` | /var/lib/loki | Path to directory with loki database |
 | `loki_http_listen_address` | "0.0.0.0" | Address on which loki will be listening |
 | `loki_http_listen_port` | 9100 | Http port on which loki will be listening |
-| `loki_config_file` | loki.conf.j2 | Variable used to provide custom prometheus configuration file in form of ansible template |
+| `loki_config_file` | loki.conf.j2 | Variable used to provide custom loki configuration file in form of ansible template |
 
 ### Playbook
 ```yaml
