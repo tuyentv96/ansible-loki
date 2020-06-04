@@ -17,7 +17,6 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 | Name           | Default Value | Description                        |
 | -------------- | ------------- | -----------------------------------|
 | `loki_version` | 1.5.0 | Loki package version |
-| `prometheus_skip_install` | false | Prometheus installation tasks gets skipped when set to true. |
 | `loki_binary_install_dir` | "/usr/local/bin" | As parameter it takes a directory where `loki` |
 | `loki_config_dir` | /etc/loki | Path to directory with loki configuration |
 | `loki_db_dir` | /var/lib/loki | Path to directory with loki database |
