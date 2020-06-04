@@ -1,0 +1,9 @@
+---
+loki_version: 1.5.0
+loki_http_listen_address: "0.0.0.0"
+loki_http_listen_port: 3100
+
+loki_binary_install_dir: "/usr/local/bin"
+
+loki_db_dir: /var/lib/loki
+loki_config_dir: /etc/loki

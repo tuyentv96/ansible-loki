@@ -1,0 +1,54 @@
+- name: Creating loki user group
+  group: name=loki
+
+- name: Creating loki user
+  user:
+    name: loki
+    group: loki
+    system: yes
+    shell: "/sbin/nologin"
+    comment: "loki nologin User"
+    createhome: "no"
+    state: present
+    home: "{{ loki_db_dir }}"
+
+- name: create loki data directory
+  file:
+    path: "{{ loki_db_dir }}"
+    state: directory
+    owner: loki
+    group: loki
+    mode: 0755
+
+- name: create loki configuration directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: loki
+    mode: 0770
+  with_items:
+    - "{{ loki_config_dir }}"
+
+- name: Install loki
+  unarchive:
+    src: https://github.com/grafana/loki/releases/download/v{{ loki_version }}/loki-linux-amd64.zip
+    dest: /tmp/
+    remote_src: yes
+    creates: "/tmp/loki-linux-amd64"
+
+- name: Copy loki file to bin
+  copy:
+    src: "/tmp/loki-linux-amd64"
+    dest: "{{ loki_binary_install_dir }}/loki"
+    owner: loki
+    group: loki
+    mode: 0755
+    remote_src: yes
+
+- name: Copy systemd init file
+  template:
+    src: init.service.j2
+    dest: /etc/systemd/system/loki.service
+  notify:
+    - restart loki

@@ -1,0 +1,15 @@
+[Unit]
+Description= loki
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=loki
+Group=loki
+Restart=on-failure
+Type=simple
+ExecStart={{ loki_binary_install_dir }}/loki \
+  --config.file={{ loki_config_dir }}/loki.conf
+
+[Install]
+WantedBy=multi-user.target

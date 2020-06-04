@@ -1,0 +1,7 @@
+---
+- name: config file
+  template:
+    src: loki.conf.j2
+    dest: "{{ loki_config_dir}}/loki.conf"
+  notify:
+    - restart loki
